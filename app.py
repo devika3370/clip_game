@@ -27,11 +27,11 @@ def predict(image, descriptions):
 
 # Streamlit app
 def main():
-    st.title("Image Understanding Model Test")
+    st.title("Two Lies, One Truth - Can you fool the model?")
 
     # Instructions for the user
     st.markdown("---")
-    st.markdown("### Upload an image to test how well the model understands it")
+    st.markdown("### Upload an image to trick the model!")
 
     # Upload image through Streamlit with a unique key
     uploaded_image = st.file_uploader("Upload an image...", type=["jpg", "png", "jpeg"], key="uploaded_image")
