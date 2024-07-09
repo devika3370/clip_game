@@ -6,11 +6,16 @@ import numpy as np
 
 # Load CLIP model and processor outside the main function
 device = "cuda" if torch.cuda.is_available() else "cpu"
-model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").to(device)
-processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+
+@st.cache_resource
+def download_clip_model():
+    model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").to(device)
+    processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+    return model, processor
 
 # Function to predict descriptions and probabilities
 def predict(image, descriptions):
+    model, processor = download_clip_model()
     inputs = processor(text=descriptions, images=image, return_tensors="pt", padding=True).to(device)
 
     with torch.no_grad():
