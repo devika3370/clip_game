@@ -1,32 +1,28 @@
-# referenced from lightning.ai
 import streamlit as st
 import torch
-import clip
+from transformers import CLIPProcessor, CLIPModel
 from PIL import Image
 import numpy as np
 
-# Load CLIP model and preprocessing
+# Load CLIP model and processor
 device = "cuda" if torch.cuda.is_available() else "cpu"
-model, preprocess = clip.load("ViT-B/32", device=device)
-
+model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").to(device)
+processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 
 # Function to predict descriptions and probabilities
 def predict(image, descriptions):
-    image = preprocess(image).unsqueeze(0).to(device)
-    text = clip.tokenize(descriptions).to(device)
+    inputs = processor(text=descriptions, images=image, return_tensors="pt", padding=True).to(device)
 
     with torch.no_grad():
-        image_features = model.encode_image(image)
-        text_features = model.encode_text(text)
-
-        logits_per_image, logits_per_text = model(image, text)
+        outputs = model(**inputs)
+        logits_per_image = outputs.logits_per_image
         probs = logits_per_image.softmax(dim=-1).cpu().numpy()
 
     return descriptions[np.argmax(probs)], np.max(probs)
 
 # Streamlit app
 def main():
-    st.title("Image understanding model test")
+    st.title("Image Understanding Model Test")
 
     # Instructions for the user
     st.markdown("---")
@@ -41,7 +37,7 @@ def main():
 
         # Limit the height of the displayed image to 400px
         st.image(pil_image, caption="Uploaded Image.", use_column_width=True, width=200)
-        
+
         # Instructions for the user
         st.markdown("### 2 Lies and 1 Truth")
         st.markdown("Write 3 descriptions about the image, 1 must be true.")
