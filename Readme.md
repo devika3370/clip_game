@@ -2,6 +2,15 @@
 
 This repository contains a Streamlit web application that allows users to play a game called "Two Truths and One Lie" with images. The game uses OpenAI's CLIP (Contrastive Language-Image Pre-training) model to understand and evaluate user-provided descriptions against an uploaded image.
 
+You can try out the app here - https://clipgame.streamlit.app/
+
+## What is CLIP?
+
+![alt text](clip-architecture.png)
+
+CLIP (Contrastive Language-Image Pre-Training) is a cutting-edge deep learning model developed by OpenAI that bridges the gap between vision and language by learning visual concepts from natural language descriptions. Unlike traditional models that rely on labeled datasets, CLIP leverages a vast amount of internet data, training on pairs of images and their associated texts. This enables the model to perform zero-shot learning, recognizing objects and scenes without explicit training for specific tasks. By employing a contrastive loss, CLIP aligns image and text representations in a shared embedding space, making it highly versatile for applications in image classification, retrieval, and beyond.
+
+
 ## How It Works
 
 The application lets users upload an image and then enter three descriptions about the image, where two descriptions are true and one is false (the lie). The CLIP model then evaluates these descriptions against the image to predict which description it believes to be the most likely true statement.
@@ -18,8 +27,8 @@ The application lets users upload an image and then enter three descriptions abo
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/image-understanding-game.git
-   cd image-understanding-game
+   git clone https://github.com/your-username/clip_game.git
+   cd clip_game
    ```
 
 2. Install dependencies:
@@ -39,12 +48,9 @@ The application lets users upload an image and then enter three descriptions abo
 ## Usage
 
 - Upload an image using the provided file uploader.
-- Enter three descriptions about the image, where two are true statements and one is false.
+- Enter three descriptions about the image, where two are false statements and one is true.
 - Click the "Guess" button to see which description the CLIP model predicts as the most likely true statement.
 - The application displays the predicted description and its confidence level.
-
-## What is CLIP?
-![alt text](clip-architecture.png)
 
 ## Additional materials
 - [openai-clip github](https://github.com/openai/CLIP)
