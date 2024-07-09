@@ -49,7 +49,7 @@ The application lets users upload an image and then enter three descriptions abo
 
 - Upload an image using the provided file uploader.
 - Enter three descriptions about the image, where two are false statements and one is true.
-- Click the "Guess" button to see which description the CLIP model predicts as the most likely true statement.
+- Click the "Predict" button to see which description the CLIP model predicts as the most likely true statement.
 - The application displays the predicted description and its confidence level.
 
 ## Additional materials
