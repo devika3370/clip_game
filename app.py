@@ -56,7 +56,7 @@ def main():
             descriptions = [description1, description2, description3]
 
             # Button to trigger prediction
-            if st.button("Predict"):
+            if st.button("Guess"):
                 if all(descriptions):
                     # Make predictions
                     best_description, best_prob = predict(pil_image, descriptions)
