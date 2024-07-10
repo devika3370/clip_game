@@ -52,6 +52,11 @@ The application lets users upload an image and then enter three descriptions abo
 - Click the "Guess" button to see which description the CLIP model predicts as the most likely true statement.
 - The application displays the predicted description and its confidence level.
 
+## Example
+![alt text](example-1.png)
+![alt text](example-2.png)
+
+
 ## Additional materials
 - [openai-clip github](https://github.com/openai/CLIP)
 
